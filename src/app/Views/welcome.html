@@ -1,0 +1,20 @@
+<h1>welcome</h1>
+<p>
+  raz-raz
+</p>
+<h2>Топ продаж</h2>
+<ul>
+  {% for i in top_list %}
+    <li>
+      {{ i.name }}
+    </li>
+  {% endfor %}
+</ul>
+<h2>Распродажа!</h2>
+<ul>
+  {% for i in sale_list %}
+    <li>
+      {{ i.name }}
+    </li>
+  {% endfor %}
+</ul>

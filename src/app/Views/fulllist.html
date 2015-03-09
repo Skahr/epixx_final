@@ -1,11 +1,25 @@
 <h1>Каталог товаров</h1>
-<p>
-  raz-raz
-</p>
-<ul>
+
   {% for i in list %}
-    <li>
-      {{ i.name }}
-    </li>
+    <div>
+      <table border=1>
+        <tr>
+          <td rowspan=4 align=center><img src="{{ url('homepage') }}/src/img/{{ i.img }}.png" width=400px/></td>
+          <td align=center height=20px>{{ i.name }}</td>
+          <tr><td height=20px>ружжо</td></tr>
+          <tr><td><div>{{ i.desc }}</div></td></tr>
+          <tr><td align=right height=20px>{{ i.price }}
+
+              <button><a href="{{ url('products') }}{{ i.id }}">Купить</a></button>
+
+          </td></tr>
+        </tr>
+
+      </table>
+
+
+
+
+
+    </div>
   {% endfor %}
-</ul>

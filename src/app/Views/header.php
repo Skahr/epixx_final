@@ -6,7 +6,9 @@
   <body>
     <nav>
       <ul>
-        <li><a href="">Главная</a></li>
-        <li><a href="index.php/products">Каталог</a></li>
+        <li><a href="{{ url('homepage') }}">Главная</a></li>
+        <li><a href="{{ url('products') }}">Каталог</a></li>
+        <li><a href="{{ url('cart') }}">Корзина</a></li>
       </ul>
     </nav>
+    <div>

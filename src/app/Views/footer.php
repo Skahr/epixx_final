@@ -1,3 +1,4 @@
-<p>Copyright 2015</p>
+  </div>
+  <p>Copyright 2015</p>
 </body>
 </html>

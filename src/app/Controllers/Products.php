@@ -35,7 +35,7 @@ class Products implements ControllerProviderInterface {
     }
     public function postToCart(Application $app, $id=0) {
       if (isset($_POST['tocart'])){
-        $_SESSION['cart'][]=array($id => $_POST['quantity']);
+        $_SESSION['cart'][$id]=$_POST['quantity'];
 
       }
       if (isset($_POST['clearcart'])) {

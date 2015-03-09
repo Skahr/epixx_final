@@ -3,10 +3,9 @@
   <p>
     {% if session %}
 
-        {% for i, row in session %}
-          {% for key, value in row %}
-        {{ key }} - {{ value }}
-          {% endfor %}<br />
+        {% for k, v in session %}
+          {{ k }}  -  {{ v }}
+          <br />
         {% endfor %}
 
   {% endif %}

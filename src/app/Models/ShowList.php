@@ -26,8 +26,10 @@ class ShowList {
     return $row;
   }
   public function getCartList($pdo, $id) {
-    $st=$pdo->prepare("SELECT * FROM pricelist WHERE id IN ?");
-    $st->execute(array($id));
+    $sql="SELECT * FROM pricelist WHERE id IN (".$id.")";
+    //echo $sql;
+    $st=$pdo->prepare($sql);//"SELECT * FROM pricelist WHERE id IN ( ? )");
+    $st->execute();//array($id));
     $row=$st->fetchAll();
     return $row;
   }

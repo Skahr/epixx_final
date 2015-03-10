@@ -1,8 +1,31 @@
 <h1>Корзина</h1>
-{% if list %}
+<!-- {% if list %}
   {% for i in list %}
-  <p>{{ i.name }}</p>
+  <p>{{ i.name }} - {{ rows_q[i.id] }} {{ i.units }}</p>
   {% endfor %}
 {% else %}
   <p>Корзина пуста</p>
+{% endif %} -->
+
+{% if list %} {% set sum=0 %}
+  <form action="" method="post">
+    {% for i in list %}
+    {{ i.name }} -
+    <input type="number" name="{{ i.id }}" size="1" min="1" max="{{ i.q }}" value="{{ rows_q[i.id] }}">
+    <input type="submit" name="q_ed" value=">">
+    {{ i.units }}  = {{ i.price*rows_q[i.id] }} $ {% set sum=sum+i.price*rows_q[i.id] %}
+    <br />
+    {% endfor %}
+    Итого: {{ sum }} $<br />
+    <input type="submit" name="buy" value="Оформить заказ">
+  </form>
+  <form action="" method="post">
+    <input type="submit" name="clearcart" value="Очистить корзину">
+  </form>
+{% else %}
+  <p>Корзина пуста</p>
 {% endif %}
+
+<!-- <form action="" method="post">
+  <input type="submit" name="clearcart" value="Очистить корзину">
+</form> -->

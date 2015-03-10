@@ -28,11 +28,16 @@ $app->get('/cart', function() use ($app) {
   require_once 'src/app/Controllers/Cart.php';
   return $viewgen;
 })->bind('cart');
+$app->post('/cart', function() use ($app) {
+  require_once 'src/app/Controllers/Cart.php';
+  return $app->redirect($app['request']->getUri());
+});
 $app->mount('/products', new Controllers\Products());
 $app->run();
 
 function combine($app, $title, $viewgen){  //сбор страницы; к хедеру + $title, вставка $fname основного контента
-  isset($_SESSION['cart']) ? $session=$_SESSION['cart'] : $session='';
-  return $app['twig']->render('header.php', array('title' => $title)).
-  $viewgen.$app['twig']->render('sidebar.php', array('session' => $session)).$app['twig']->render('footer.php');
+  //isset($_SESSION['cart']) ? $session=$_SESSION['cart'] : $session='';
+  isset($_SESSION['cart']) ? require_once 'src/app/Controllers/MiniCart.php' : $session='';
+  return $app['twig']->render('header.html', array('title' => $title)).
+  $viewgen.$app['twig']->render('sidebar.html', array('session' => $session)).$app['twig']->render('footer.html');
 }

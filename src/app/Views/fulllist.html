@@ -5,12 +5,15 @@
       <table border=1>
         <tr>
           <td rowspan=4 align=center><img src="{{ url('homepage') }}/src/img/{{ i.img }}.png" width=400px/></td>
-          <td align=center height=20px>{{ i.name }}</td>
+          <td align=center height=20px><a href="{{ url('products') }}{{ i.id }}">{{ i.name }}</a></td>
           <tr><td height=20px>ружжо</td></tr>
           <tr><td><div>{{ i.desc }}</div></td></tr>
           <tr><td align=right height=20px>{{ i.price }}
-
-              <button><a href="{{ url('products') }}{{ i.id }}">Купить</a></button>
+            <form action="" method="post">
+              <input type="hidden" name="id" value="{{ i.id }}">
+              <input type="submit" name="tocart" value="В корзину">
+            </form>
+              <!-- <button><a href="{{ url('products') }}{{ i.id }}">Купить</a></button> -->
 
           </td></tr>
         </tr>

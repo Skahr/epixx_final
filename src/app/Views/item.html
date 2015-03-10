@@ -2,7 +2,7 @@
 <div>{{ list.0.desc }}</div>
 <div>
   <form action="{{ url('products') }}{{ list.0.id }}" method="post">
-    <input type="text" name="quantity" value="1"> {{ list.0.units }}
+    <!-- <input type="text" name="quantity" value="1"> {{ list.0.units }} -->
     <input type="submit" name="tocart" value="В корзину">
   </form>
 </div>

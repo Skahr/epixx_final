@@ -18,15 +18,15 @@ class Products implements ControllerProviderInterface {
       return $factory;
     }
     public function getFullList(Application $app) {
-      require_once 'src/app/Controllers/FullList.php';
+      require_once '/../src/app/Controllers/FullList.php';
       return $viewgen;
     }
     public function getItemPage(Application $app, $id) {
-      require_once 'src/app/Controllers/Item.php';
+      require_once '/../src/app/Controllers/Item.php';
       return $viewgen;
     }
     public function getByCategory(Application $app) {
-      require_once 'src/app/Controllers/FullList.php';
+      require_once '/../src/app/Controllers/FullList.php';
       return $viewgen;
     }
     public function postToCart(Application $app, $id=0) {

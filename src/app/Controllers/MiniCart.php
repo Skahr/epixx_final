@@ -9,5 +9,5 @@ $Pg= new Models\ShowList();
 $rows=$Pg->getCartList($app['pdo'], trim($rows_id,', '));
 //$price='0';
 foreach($rows as $i => $v) {
-  $session['1']+=$rows[$i]['price']*$_SESSION['cart'][$rows[$i]['id']];
+  $session['1']+=($rows[$i]['price']*(1-$rows[$i]['sale']/100))*$_SESSION['cart'][$rows[$i]['id']];
 }

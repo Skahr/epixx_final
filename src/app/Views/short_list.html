@@ -1,0 +1,5 @@
+<form action="{{ url('user') }}/{{ o_id }}" method="post">
+  {% for i in list %}
+  {{ i.name }}<input type="submit" name="add" value="{{ i.id }}"><br />
+  {% endfor %}
+</form>

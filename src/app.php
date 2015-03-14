@@ -24,14 +24,66 @@ $app->get('/', function() use ($app){
   require_once '/app/Controllers/Welcome.php';
   return $viewgen;
 })->bind('homepage');
+$app->get('/shortlist/{id}', function($id) use ($app){
+  if(isset($_SESSION['login'])) {
+    require_once '/app/Controllers/ShortList.php';
+    return $viewgen;
+  }
+  else {
+    return $app->redirect($app['url_generator']->generate('user'));
+  }
+})->bind('shortlist');
+
+$app->get('/user', function() use ($app){
+  if(isset($_SESSION['login'])) {
+    require_once '/app/Controllers/Admin.php';
+  }
+  else {
+    require_once '/app/Controllers/Login.php';
+  }
+  return $viewgen;
+})->bind('user');
+$app->post('/user', function() use ($app){
+  if(isset($_SESSION['login'])) {
+    require_once '/app/Controllers/Admin.php';
+  }
+  else {
+    require_once '/app/Controllers/Login.php';
+  }
+  return $app->redirect($app['request']->getUri());
+});
+$app->get('/user/{id}', function($id) use ($app){
+  if(isset($_SESSION['login'])) {
+    require_once '/app/Controllers/AdmOrderId.php';
+    return $viewgen;
+  }
+  else {
+    return $app->redirect($app['url_generator']->generate('user'));
+  }
+});
+$app->post('/user/{id}', function($id) use ($app){
+  require_once '/app/Controllers/AdmOrderId.php';
+  return $app->redirect($app['request']->getUri());
+});
 $app->get('/cart', function() use ($app) {
   require_once '/app/Controllers/Cart.php';
   return $viewgen;
 })->bind('cart');
 $app->post('/cart', function() use ($app) {
-  require_once '/app/Controllers/Cart.php';
-  return $app->redirect($app['request']->getUri());
+  if (isset($_POST['buy'])) {
+    require_once '/app/Controllers/Buy.php';
+    return $app->redirect($app['url_generator']->generate('thanks'));
+  }
+  else {
+    require_once '/app/Controllers/Cart.php';
+    return $app->redirect($app['request']->getUri());
+  }
 });
+$app->get('/thanks', function() use ($app){
+  require_once '/app/Controllers/Thanks.php';
+  return $viewgen;
+})->bind('thanks');
+
 $app->mount('/products', new Controllers\Products());
 $app->run();
 

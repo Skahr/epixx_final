@@ -13,12 +13,17 @@
     {{ i.name }} -
     <input type="number" name="{{ i.id }}" size="1" min="1" max="{{ i.q }}" value="{{ rows_q[i.id] }}">
     <input type="submit" name="q_ed" value=">">
-    {{ i.units }}  = {{ i.price*rows_q[i.id] }} $ {% set sum=sum+i.price*rows_q[i.id] %}
+    <input type="submit" name="del" value="{{ i.id }}">
+
+    {{ i.units }}  = {{ i.price*(1-i.sale/100)*rows_q[i.id] }} $ {% set sum=sum+i.price*(1-i.sale/100)*rows_q[i.id] %}
     <br />
     {% endfor %}
     Итого: {{ sum }} $<br />
-    <input type="submit" name="buy" value="Оформить заказ">
+    <input type="submit" name="order" value="Оформить заказ">
+
   </form>
+  <!-- <form action="" method="post">
+  </form> -->
   <form action="" method="post">
     <input type="submit" name="clearcart" value="Очистить корзину">
   </form>

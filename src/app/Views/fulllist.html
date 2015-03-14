@@ -1,28 +1,31 @@
 <h1>Каталог товаров</h1>
 
   {% for i in list %}
-    <div>
-      <table border=1>
-        <tr>
-          <td rowspan=4 align=center><img src="{{ url('homepage') }}img/{{ i.img }}.png" width=400px/></td>
-          <td align=center height=20px><a href="{{ url('products') }}{{ i.id }}">{{ i.name }}</a></td>
-          <tr><td height=20px>ружжо</td></tr>
-          <tr><td><div>{{ i.desc }}</div></td></tr>
-          <tr><td align=right height=20px>{{ i.price }}
-            <form action="" method="post">
-              <input type="hidden" name="id" value="{{ i.id }}">
-              <input type="submit" name="tocart" value="В корзину">
-            </form>
-              <!-- <button><a href="{{ url('products') }}{{ i.id }}">Купить</a></button> -->
+    <div class="table_left"
+    {% if i.sale %}
+      style="outline: 4px solid red; outline-offset: -4px"
+    {% endif %}>
+      <div>
+              <img src="{{ url('homepage') }}img/{{ i.img }}.png" class="list_img"/>
+      </div>
+      <div>
 
-          </td></tr>
-        </tr>
-
-      </table>
-
-
-
-
-
+        <form action="" method="post">
+          {% if i.sale %}
+            <b class="sale">Скидка {{ i.sale }}%!!!  </b>
+            <strike>{{ i.price }}</strike>
+          {% endif %}
+          {{ i.price*(1-i.sale/100) }} $
+          <input type="hidden" name="id" value="{{ i.id }}">
+          <button type="submit" name="tocart"></button>
+          <!-- <input type="submit" name="tocart" value="В корзину"> -->
+        </form>
+      </div>
     </div>
+    <div class="table_right">
+          <a href="{{ url('products') }}{{ i.id }}">{{ i.name }}</a>
+          ружжо
+          <div>{{ i.desc }}</div>
+    </div>
+    <div class="clear"></div>
   {% endfor %}

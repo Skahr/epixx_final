@@ -1,0 +1,26 @@
+<h1>Оформление заказа</h1>
+<!-- {% if list %}
+  {% for i in list %}
+  <p>{{ i.name }} - {{ rows_q[i.id] }} {{ i.units }}</p>
+  {% endfor %}
+{% else %}
+  <p>Корзина пуста</p>
+{% endif %} -->
+<table>
+  <th>Ваш заказ</th>
+  {% set sum=0 %}
+  {% for i in list %}
+  <tr><td>{{ i.name }}</td><td>{{ rows_q[i.id] }}{{ i.units }}</td><td>{{ i.price*(1-i.sale/100)*rows_q[i.id] }}</td></tr>
+  {% set sum=sum+i.price*(1-i.sale/100)*rows_q[i.id] %}
+  {% endfor %}
+  <tr colspan=3>Итого: {{ sum }}</tr>
+</table>
+
+  <form action="" method="post">
+    <input type="text" name="c_name" placeholder="Введите ФИО" required>
+    <input type="text" name="c_phone" placeholder="Телефон" required>
+    <input type="submit" name="buy" value="Отправить">
+  </form>
+  <form action="" method="post">
+    <input type="submit" name="backtocart" value="Вернуться в корзину">
+  </form>

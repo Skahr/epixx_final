@@ -1,0 +1,23 @@
+<a href="{{ url('user') }}">Назад</a>
+<form action="" method="post">
+  <b>№{{ list.0.id }}</b>
+  <p>{{ list.0.o_date }}</p>
+
+  <input type="text" name="c_name" value="{{ list.0.c_name }}" required><br />
+  <input type="text" name="c_phone" value="{{ list.0.c_phone }}" required><br />
+  <input type="radio" name="r_b" value="new" {% if list.0.o_status=='new' %} checked {% endif %}>новый
+  <input type="radio" name="r_b" value="conf" {% if list.0.o_status=='conf' %} checked {% endif %}>подтвержден
+  <input type="radio" name="r_b" value="fin" {% if list.0.o_status=='fin' %} checked {% endif %}>выполнен
+  <input type="radio" name="r_b" value="del" {% if list.0.o_status=='del' %} checked {% endif %}>отменен
+  <div>
+    {% for i in order_list %}
+      {{ i.name }} -
+      <input type="text" name="{{ i.id }}" value="{{ c_o[i.id] }}" required>
+      <input type="submit" name="del" value="{{ i.id }}"><br />
+    {% endfor %}
+  </div>
+  <input type="submit" name="order_ed" value="Сохранить">
+</form>
+
+<b>Сохраните изменения, прежде, чем добавлять новый товар!</b><br />
+<a href="{{ url('shortlist', {id: o_id}) }}">Добавить товар</a>

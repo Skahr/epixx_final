@@ -1,0 +1,31 @@
+body { background: grey;}
+button {background: black url(img/cart.png) no-repeat; width: 50px; height: 50px; border: 0px; }
+button:focus {background: black; outline: 0;}
+.sale {color: red;}
+.list_img {  width: 400px;}
+.center {
+    width: 800px; /* Ширина элемента в пикселах */
+    padding: 10px; /* Поля вокруг текста */
+    margin: auto; /* Выравниваем по центру */
+    background: white; /* Цвет фона */
+
+   }
+.table_left {
+    overflow: hidden;
+    text-align: right;
+    background-color: black; /* Цвет фона слоя */
+    color: white;
+    padding: 5px; /* Поля вокруг текста */
+    float: left; /* Обтекание по правому краю */
+    width: 400px; /* Ширина слоя */
+   }
+.table_right {
+    background-color: #c0c0c0; /* Цвет фона слоя */
+    padding: 5px; /* Поля вокруг текста */
+    width: 380px; /* Ширина слоя */
+    float: left; /* Обтекание по правому краю */
+   }
+.clear {
+    clear: left; /* Отмена обтекания */
+    padding: 10px;
+   }

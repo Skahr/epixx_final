@@ -9,6 +9,15 @@
   <input type="submit" name="changepass" value="Сменить пароль">
 </form>
 
+<form action="" method="post">
+  <input type="submit" name="ed_mode" value="Режим редактирования:"> 
+  {% if ed==1 %}
+    <span style="background: green; color: white">включено</span>
+  {% else %}
+    <span style="background: red; color: white">выключено</span>
+  {% endif %}
+</form>
+<a href="{{ url('add') }}">Добавить новый товар в базу</a>
 <h1>Список заказов</h1>
 <table border="1">
   <tr><td>Номер</td><td>Статус</td><td>Дата</td><td>ФИО</td><td>Телефон</td></tr>

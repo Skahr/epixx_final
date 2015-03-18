@@ -33,6 +33,24 @@ class ShowList {
     $row=$st->fetchAll();
     return $row;
   }
+  public function postItemToDb($pdo, $name, $description, $img, $price, $sale, $units, $q){
+    $st=$pdo->prepare("INSERT INTO pricelist (name, description, img, price, sale, units, q) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $st->execute(array($name, $description, $img, $price, $sale, $units, $q));
+  }
+  public function postItemToDbUpdate($pdo, $id, $name, $description, $img, $price, $sale, $units, $q, $soldq) {
+    $st=$pdo->prepare("UPDATE pricelist SET name=?, description=?, img=?, price=?, sale=?, units=?, q=?, soldq=? WHERE id=?");
+    $st->execute(array($name, $description, $img, $price, $sale, $units, $q, $soldq, $id));
+  }
+  public function postPicToDb($pdo, $id, $img) {
+    $st=$pdo->prepare("UPDATE pricelist SET img=? WHERE id=?");
+    $st->execute(array($img, $id));
+  }
+  public function checkName($pdo, $name){
+    $st=$pdo->prepare("SELECT id FROM pricelist WHERE name= ?");
+    $st->execute(array($name));
+    $row=$st->fetchAll();
+    return $row;
+  }
   // public function hello($name) {
   //     return ", {$name}!";
   // }

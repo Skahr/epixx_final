@@ -13,3 +13,6 @@
       </ul>
     </nav>
     <div class="center">
+      {% if flash %}
+        <div style="background: {{ f_color }}">{{ flash }}</div>
+      {% endif %}

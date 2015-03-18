@@ -22,8 +22,13 @@ class Products implements ControllerProviderInterface {
       return $viewgen;
     }
     public function getItemPage(Application $app, $id) {
-      require_once '/../src/app/Controllers/Item.php';
-      return $viewgen;
+      if(ctype_digit(strval($id))) {
+        require_once '/../src/app/Controllers/Item.php';
+        return $viewgen;
+      }
+      else {
+        return $app->redirect($app['url_generator']->generate('products'));
+      }
     }
     public function getByCategory(Application $app) {
       require_once '/../src/app/Controllers/FullList.php';
@@ -35,6 +40,9 @@ class Products implements ControllerProviderInterface {
           $id=$_POST['id'];
         }
         $_SESSION['cart'][$id]++;
+      }
+      else {
+        require_once '/../src/app/Controllers/Item.php';
       }
       return $app->redirect($app['request']->getUri());
     }

@@ -1,12 +1,11 @@
 {% if (app.request.attributes.get('_route'))!='cart' %}
   <div style="position: fixed; right: 10px; top: 10px; width: 200px; padding: 10px; background: #ffe; border: 1px solid #333;">
-    <h2>Корзина</h2>
+    <h2><a href="{{ url('cart') }}">Корзина</a></h2>
     <p>
       {% if session %}
         {{ session.0 }} шт.<br />
         на сумму: {{ session.1 }} $
-
-        {% else %}
+      {% else %}
           <p>Корзина пуста</p>
       {% endif %}
     </p>

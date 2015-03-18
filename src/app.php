@@ -83,13 +83,37 @@ $app->get('/thanks', function() use ($app){
   require_once '/app/Controllers/Thanks.php';
   return $viewgen;
 })->bind('thanks');
-
+$app->get('/add', function() use ($app){
+  if(isset($_SESSION['login'])) {
+    require_once '/app/Controllers/Add.php';
+    return $viewgen;
+  }
+  else {
+    $app->abort(404, "Something is wrong");
+  }
+})->bind('add');
+$app->post('/add', function() use ($app){
+  require_once '/app/Controllers/Add.php';
+  return $app->redirect($app['request']->getUri());
+});
 $app->mount('/products', new Controllers\Products());
 $app->run();
 
 function combine($app, $title, $viewgen){  //сбор страницы; к хедеру + $title, вставка $fname основного контента
-  //isset($_SESSION['cart']) ? $session=$_SESSION['cart'] : $session='';
   isset($_SESSION['cart']) ? require_once '/app/Controllers/MiniCart.php' : $session='';
-  return $app['twig']->render('header.html', array('title' => $title)).
+  isset($_SESSION['flash']) ? $flash=$_SESSION['flash'] : $flash='';
+  isset($_SESSION['flash_color']) ? $f_color=$_SESSION['flash_color'] : $f_color='white';
+  unset($_SESSION['flash']);
+  unset($_SESSION['flash_color']);
+  return $app['twig']->render('header.html', array('title' => $title, 'flash' => $flash, 'f_color' => $f_color)).
   $viewgen.$app['twig']->render('sidebar.html', array('session' => $session)).$app['twig']->render('footer.html');
+}
+function setflash($str, $color='red') {
+  $_SESSION['flash']=$str;
+  if ($color=='red'){
+    $_SESSION['flash_color']='red';
+  }
+  else {
+    $_SESSION['flash_color']='green';
+  }
 }

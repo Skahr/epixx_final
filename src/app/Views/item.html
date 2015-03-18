@@ -1,8 +1,12 @@
-<h1>{{ list.0.name }}</h1>
-<div>{{ list.0.desc }}</div>
-<div>
-  <form action="{{ url('products') }}{{ list.0.id }}" method="post">
-    <!-- <input type="text" name="quantity" value="1"> {{ list.0.units }} -->
-    <input type="submit" name="tocart" value="В корзину">
-  </form>
-</div>
+{% if list %}
+  <h1>{{ list.0.name }}</h1>
+  <div>{{ list.0.description }}</div>
+  <div>
+    <form action="{{ url('products') }}{{ list.0.id }}" method="post">
+      <input type="submit" name="tocart" value="В корзину">
+    </form>
+  </div>
+{% else %}
+  <span>Мы такое не продаем</span><br />
+  <a href="{{ url('products') }}">В каталог</a>
+{% endif %}

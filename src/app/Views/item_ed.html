@@ -1,0 +1,27 @@
+{% if list %}
+<div style="background: grey">
+  <h2>Загрузить картинку на сервер</h2>
+  <form action="{{ url('products') }}{{ list.0.id }}" method="post" enctype="multipart/form-data">
+    <input type="file" name="fileToUpload" id="fileToUpload" required><br/>
+    <input type="submit" name="pic_up" value="Загрузить картинку">
+  </form>
+</div>
+<h2>Редактировать запись в бд</h2>
+<form action="{{ url('products') }}{{ list.0.id }}" method="post">
+  <table>
+    <tr><td>Название:</td><td colspan="2"><input type="text" name="name" value="{{ list.0.name }}" required></td></tr>
+    <tr><td>Описание:</td><td colspan="2"><textarea name="description" rows="4" cols="50" required>{{ list.0.description }}</textarea></td></tr>
+    <tr><td>Картинка:</td><td colspan="2"><input type="text" name="img" value="{{ list.0.img }}" required>.png</td></tr>
+    <tr><td>Цена:</td><td colspan="2"><input type="text" name="price" value="{{ list.0.price }}" required></td></tr>
+    <tr><td>Скидка:</td><td colspan="2"><input type="text" name="sale" value="{{ list.0.sale }}" required> %</td></tr>
+    <tr><td>Кол-во на складе:</td><td><input type="text" name="q" value="{{ list.0.q }}" required></td>
+      <td><input type="text" name="units" value="{{ list.0.units }}" required></td></tr>
+    <tr><td>Продано:</td><td colspan="2"><input type="text" name="soldq" value="{{ list.0.soldq }}" required></td></tr>
+    <tr><td colspan="3"><input type="submit" name="item_ed" value="Сохранить"></td></tr>
+  </table>
+</form>
+<img src="{{ url('homepage') }}img/{{ list.0.img }}.png" class="list_img"/>
+{% else %}
+  <span>Мы такое не продаем</span><br />
+  <a href="{{ url('products') }}">В каталог</a>
+{% endif %}

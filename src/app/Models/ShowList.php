@@ -51,6 +51,12 @@ class ShowList {
     $row=$st->fetchAll();
     return $row;
   }
+  public function updateSoldq($pdo, $c_o) {
+    foreach ($c_o as $k => $v) {
+      $st=$pdo->prepare("UPDATE pricelist SET soldq=soldq+? WHERE id=?");
+      $st->execute(array($v, $k));
+    }
+  }
   // public function hello($name) {
   //     return ", {$name}!";
   // }

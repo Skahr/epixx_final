@@ -24,15 +24,6 @@ $app->get('/', function() use ($app){
   require_once '/app/Controllers/Welcome.php';
   return $viewgen;
 })->bind('homepage');
-$app->get('/shortlist/{id}', function($id) use ($app){
-  if(isset($_SESSION['login'])) {
-    require_once '/app/Controllers/ShortList.php';
-    return $viewgen;
-  }
-  else {
-    return $app->redirect($app['url_generator']->generate('user'));
-  }
-})->bind('shortlist');
 
 $app->get('/user', function() use ($app){
   if(isset($_SESSION['login'])) {
@@ -54,7 +45,12 @@ $app->post('/user', function() use ($app){
 });
 $app->get('/user/{id}', function($id) use ($app){
   if(isset($_SESSION['login'])) {
-    require_once '/app/Controllers/AdmOrderId.php';
+    if (isset($_SESSION['shortlist'])){
+      require_once '/app/Controllers/ShortList.php';
+    }
+    else {
+      require_once '/app/Controllers/AdmOrderId.php';
+    }
     return $viewgen;
   }
   else {
@@ -62,7 +58,14 @@ $app->get('/user/{id}', function($id) use ($app){
   }
 });
 $app->post('/user/{id}', function($id) use ($app){
-  require_once '/app/Controllers/AdmOrderId.php';
+  if (isset($_POST['shortlist'])){
+    $_SESSION['shortlist']='1';
+//    require_once '/app/Controllers/ShortList.php';
+//    return $viewgen;
+  }
+  else {
+    require_once '/app/Controllers/AdmOrderId.php';
+  }
   return $app->redirect($app['request']->getUri());
 });
 $app->get('/cart', function() use ($app) {

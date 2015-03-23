@@ -1,32 +1,44 @@
 <?php
 namespace Models;
 class ShowList {
+  public function getCatLinks($pdo) {
+    $st=$pdo->prepare("SELECT name_en, name_ru FROM category");
+    $st->execute();
+    $row=$st->fetchAll();
+    return $row;
+  }
   public function getFullList($pdo) {
-    $st=$pdo->prepare("SELECT * FROM pricelist"); /*WHERE id= ? */
-    $st->execute(); /*array('2')*/
+    $st=$pdo->prepare("SELECT * FROM pricelist JOIN category ON pricelist.id_cat=category.id_cat");
+    $st->execute();
+    $row=$st->fetchAll();
+    return $row;
+  }
+  public function getByCategory($pdo, $cat) {
+    $st=$pdo->prepare("SELECT * FROM pricelist JOIN category ON pricelist.id_cat=category.id_cat WHERE category.name_en= ?");
+    $st->execute(array($cat));
     $row=$st->fetchAll();
     return $row;
   }
   public function getTopList($pdo) {
-    $st=$pdo->prepare("SELECT * FROM pricelist ORDER BY soldq DESC LIMIT 3");
-    $st->execute(); /*array('2')*/
+    $st=$pdo->prepare("SELECT * FROM pricelist JOIN category ON pricelist.id_cat=category.id_cat ORDER BY soldq DESC LIMIT 3");
+    $st->execute();
     $row=$st->fetchAll();
     return $row;
   }
   public function getSaleList($pdo) {
-    $st=$pdo->prepare("SELECT * FROM pricelist WHERE sale > 0");
-    $st->execute(); /*array('2')*/
+    $st=$pdo->prepare("SELECT * FROM pricelist JOIN category ON pricelist.id_cat=category.id_cat WHERE sale > 0");
+    $st->execute();
     $row=$st->fetchAll();
     return $row;
   }
   public function getItem($pdo, $id) {
-    $st=$pdo->prepare("SELECT * FROM pricelist WHERE id= ?");
+    $st=$pdo->prepare("SELECT * FROM pricelist JOIN category ON pricelist.id_cat=category.id_cat WHERE id= ?");
     $st->execute(array($id));
     $row=$st->fetchAll();
     return $row;
   }
   public function getCartList($pdo, $id) {
-    $sql="SELECT * FROM pricelist WHERE id IN (".$id.")";
+    $sql="SELECT * FROM pricelist JOIN category ON pricelist.id_cat=category.id_cat WHERE id IN (".$id.")";
     //echo $sql;
     $st=$pdo->prepare($sql);//"SELECT * FROM pricelist WHERE id IN ( ? )");
     $st->execute();//array($id));

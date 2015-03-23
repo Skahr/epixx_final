@@ -23,9 +23,9 @@
       </div>
     </div>
     <div class="table_right">
-          <a href="{{ url('products') }}{{ i.id }}">{{ i.name }}</a>
-          ружжо
-          <div>{{ i.description }}</div>
+      <a href="{{ url('products') }}{{ i.name_en }}">{{ i.name_ru }}</a> /
+      <a href="{{ url('products') }}{{ i.name_en }}/{{ i.id }}">{{ i.name }}</a>
+      <div>{{ i.description }}</div>
     </div>
     <div class="clear"></div>
   {% endfor %}

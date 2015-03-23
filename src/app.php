@@ -108,7 +108,9 @@ function combine($app, $title, $viewgen){  //сбор страницы; к хе�
   isset($_SESSION['flash_color']) ? $f_color=$_SESSION['flash_color'] : $f_color='white';
   unset($_SESSION['flash']);
   unset($_SESSION['flash_color']);
-  return $app['twig']->render('header.html', array('title' => $title, 'flash' => $flash, 'f_color' => $f_color)).
+  $Pg= new Models\ShowList();
+  $list=$Pg->getCatLinks($app['pdo']);
+  return $app['twig']->render('header.html', array('title' => $title, 'flash' => $flash, 'f_color' => $f_color, 'list' => $list)).
   $viewgen.$app['twig']->render('sidebar.html', array('session' => $session)).$app['twig']->render('footer.html');
 }
 function setflash($str, $color='red') {

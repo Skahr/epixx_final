@@ -11,10 +11,12 @@ class Products implements ControllerProviderInterface {
     public function connect(Application $app) {
       $factory= $app['controllers_factory'];
       $factory->get('/', 'Controllers\Products::getFullList')->bind('products');
-      $factory->get('/category', 'Controllers\Products::getByCategory');
-      $factory->get('/{id}', 'Controllers\Products::getItemPage');
-      $factory->post('/{id}', 'Controllers\Products::postToCart');
+//      $factory->get('/category', 'Controllers\Products::getByCategory');
+      $factory->get('/{cat}', 'Controllers\Products::getByCategory');
+      $factory->get('/{cat}/{id}', 'Controllers\Products::getItemPage');
+      $factory->post('/{cat}/{id}', 'Controllers\Products::postToCart');
       $factory->post('/', 'Controllers\Products::postToCart');
+      $factory->post('/{cat}', 'Controllers\Products::postToCart');
       return $factory;
     }
     public function getFullList(Application $app) {
@@ -30,7 +32,7 @@ class Products implements ControllerProviderInterface {
         return $app->redirect($app['url_generator']->generate('products'));
       }
     }
-    public function getByCategory(Application $app) {
+    public function getByCategory(Application $app, $cat) {
       require_once '/../src/app/Controllers/FullList.php';
       return $viewgen;
     }

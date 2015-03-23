@@ -2,7 +2,7 @@
   <h1>{{ list.0.name }}</h1>
   <div>{{ list.0.description }}</div>
   <div>
-    <form action="{{ url('products') }}{{ list.0.id }}" method="post">
+    <form action="{{ url('products') }}{{ list.0.name_en }}/{{ list.0.id }}" method="post">
       <input type="submit" name="tocart" value="В корзину">
     </form>
   </div>

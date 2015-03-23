@@ -17,7 +17,7 @@ if ((isset($_POST['order_ed']))||(isset($_POST['del']))) {
     if(($fin_check['0']['o_status']!='fin')&&($c_o)){
       $Sg= new Models\ShowList();
       $Sg->updateSoldq($app['pdo'], $c_o);
-      setflash('Заказ выполнен. Soldq проданных товаров обновлено');
+      setflash('Заказ выполнен. Soldq проданных товаров обновлено', 'green');
     }
   }
   if($c_o){

@@ -32,7 +32,7 @@ if(isset($_POST['pic_up'])) {
   }
 }
 elseif(isset($_POST['item_ed'])) {
-  $Pg->postItemToDbUpdate($app['pdo'], $id, $_POST['name'], $_POST['description'], $_POST['img'], $_POST['price'], $_POST['sale'], $_POST['units'], $_POST['q'], $_POST['soldq']);
+  $Pg->postItemToDbUpdate($app['pdo'], $id, $_POST['name'], $_POST['category'], $_POST['description'], $_POST['img'], $_POST['price'], $_POST['sale'], $_POST['units'], $_POST['q'], $_POST['soldq']);
 }
 else {
   $list=$Pg->getItem($app['pdo'], $id);

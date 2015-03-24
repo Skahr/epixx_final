@@ -1,5 +1,9 @@
 <h1>Каталог товаров</h1>
-
+<form action="" method="post"><input type="submit" name="sort" value="price_asc"></form>
+<form action="" method="post"><input type="submit" name="sort" value="price_desc"></form>
+<form action="" method="post"><input type="submit" name="sort" value="soldq_asc"></form>
+<form action="" method="post"><input type="submit" name="sort" value="soldq_desc"></form>
+<form action="" method="post"><input type="submit" name="sort" value="clear"></form>
   {% for i in list %}
     <div class="table_left"
     {% if i.sale %}

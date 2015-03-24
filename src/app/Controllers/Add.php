@@ -26,7 +26,7 @@ if(isset($_POST['addtodb'])){
     else {
       if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         $img=rtrim(basename($_FILES["fileToUpload"]["name"]), '.png');
-        $Pg->postItemToDb($app['pdo'], $name, $_POST['description'], $img, $_POST['price'], $_POST['sale'], $_POST['units'], $_POST['q']);
+        $Pg->postItemToDb($app['pdo'], $name, $_POST['category'], $_POST['description'], $img, $_POST['price'], $_POST['sale'], $_POST['units'], $_POST['q']);
         setflash('Товар добавлен в базу', 'green');
       }
       else {

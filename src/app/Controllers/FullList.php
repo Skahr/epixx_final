@@ -1,11 +1,12 @@
 <?php
 $Pg= new Models\ShowList();
-
-if(isset($cat)) {
-  $list=$Pg->getByCategory($app['pdo'], $cat);
+$sort='';
+if(isset($_SESSION['sort'])) {
+  $sort=$_SESSION['sort'];
 }
-else {
-  $list=$Pg->getFullList($app['pdo']);
+if(!isset($cat)) {
+  $cat='';
 }
+$list=$Pg->getFullList($app['pdo'], $cat, $sort);
 $viewgen=$app['twig']->render('fulllist.html', array('list' => $list));
 $viewgen=combine($app, 'Каталог', $viewgen);

@@ -1,7 +1,11 @@
-<h1>Велкам, {{ admin }}</h1>
-<form action="" method="post">
-  <input type="submit" name="logout" value="Выход">
-</form>
+<div class="sort_submit">
+  <h1>Велкам, {{ admin }}</h1>
+  <form action="" method="post">
+    <button type="submit" name="logout" value="Выход">X</button>
+  </form>
+</div>
+<div class="content">
+
 
 <form action="" method="post">
   <input type="password" name="password_old" placeholder="Старый пароль" required>
@@ -18,23 +22,12 @@
     <span style="background: red; color: white">выключено</span>
   {% endif %}
 </form>
-<a href="{{ url('add') }}">Добавить новый товар в базу</a>
+<button><a href="{{ url('add') }}">Добавить новый товар в базу</a></button>
 <h1>Список заказов</h1>
-<table border="1">
+<table border="1" class="order">
   <tr><td>Номер</td><td>Статус</td><td>Дата</td><td>ФИО</td><td>Телефон</td></tr>
   {% for i in list %}
     <tr><td><a href="{{ url('user') }}/{{ i.id }}">заказ №{{ i.id }}</a></td><td>{{ i.o_status }}</td><td>{{ i.o_date }}</td><td>{{ i.c_name }}</td><td>{{ i.c_phone }}</td></tr>
-  <!-- <div>
-    <form action="" method="post">
-      <b>№{{ i.id }}</b>
-      <input type="text" value="{{ i.c_name }}" required>
-      <input type="text" value="{{ i.c_phone }}" required>
-      <p>{{ i.o_date }}</p>
-      <input type="radio" name="r_b" value="r_new" {% if i.o_status=='new' %} checked {% endif %}>новый
-      <input type="radio" name="r_b" value="r_conf" {% if i.o_status=='conf' %} checked {% endif %}>подтвержден
-      <input type="radio" name="r_b" value="r_fin" {% if i.o_status=='fin' %} checked {% endif %}>выполнен
-
-    </form>
-  </div> -->
   {% endfor %}
 </table>
+</div>

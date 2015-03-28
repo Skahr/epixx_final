@@ -1,5 +1,6 @@
+<div class="content">
 {% if list %}
-<div style="background: grey">
+<div style="background: grey; text-align: left">
   <h2>Загрузить картинку на сервер</h2>
   <form action="{{ url('products') }}{{ list.0.name_en }}/{{ list.0.id }}" method="post" enctype="multipart/form-data">
     <input type="file" name="fileToUpload" id="fileToUpload" required><br/>
@@ -8,7 +9,7 @@
 </div>
 <h2>Редактировать запись в бд</h2>
 <form action="{{ url('products') }}{{ list.0.name_en }}/{{ list.0.id }}" method="post">
-  <table>
+  <table class="tdleft" width="100%">
     <tr><td>Название:</td><td colspan="2"><input type="text" name="name" value="{{ list.0.name }}" required></td></tr>
     <tr><td>Категория:</td><td><input type="text" name="category" value="{{ list.0.id_cat }}" required></td><td>//{{ list.0.name_ru }}</td></tr>
     <tr><td>Описание:</td><td colspan="2"><textarea name="description" rows="4" cols="50" required>{{ list.0.description }}</textarea></td></tr>
@@ -26,3 +27,4 @@
   <span>Мы такое не продаем</span><br />
   <a href="{{ url('products') }}">В каталог</a>
 {% endif %}
+</div>

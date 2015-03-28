@@ -1,19 +1,15 @@
-<h1>Оформление заказа</h1>
-<!-- {% if list %}
-  {% for i in list %}
-  <p>{{ i.name }} - {{ rows_q[i.id] }} {{ i.units }}</p>
-  {% endfor %}
-{% else %}
-  <p>Корзина пуста</p>
-{% endif %} -->
-<table>
-  <th>Ваш заказ</th>
+<div class="sort_submit">
+  <h1>Оформление заказа</h1>
+</div>
+<div class="content">
+<table class="order">
+  <tr><th align="left">Наименование</th><th>Кол-во</th><th>Цена</th></tr>
   {% set sum=0 %}
   {% for i in list %}
-  <tr><td>{{ i.name }}</td><td>{{ rows_q[i.id] }}{{ i.units }}</td><td>{{ i.price*(1-i.sale/100)*rows_q[i.id] }}</td></tr>
+  <tr><td align="left">{{ i.name }}</td><td>{{ rows_q[i.id] }}{{ i.units }}</td><td>{{ i.price*(1-i.sale/100)*rows_q[i.id] }}</td></tr>
   {% set sum=sum+i.price*(1-i.sale/100)*rows_q[i.id] %}
   {% endfor %}
-  <tr colspan=3>Итого: {{ sum }}</tr>
+  <tr colspan=3 align="left"><td><b>Итого: {{ sum }} $</b></td></tr>
 </table>
 
   <form action="" method="post">
@@ -24,3 +20,4 @@
   <form action="" method="post">
     <input type="submit" name="backtocart" value="Вернуться в корзину">
   </form>
+</div>

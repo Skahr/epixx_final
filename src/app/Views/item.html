@@ -1,10 +1,23 @@
 {% if list %}
-  <h1>{{ list.0.name }}</h1>
-  <div>{{ list.0.description }}</div>
+  <div class="sort_submit">
+    <h1>{{ list.0.name }}</h1>
+    {% if list.0.sale %}
+      <b class="sale">Скидка {{ list.0.sale }}%!!!  </b>
+      <strike>{{ list.0.price }}</strike>
+    {% endif %}
+      {{ list.0.price*(1-list.0.sale/100) }} $
+  </div>
+  <div><img src="{{ url('homepage') }}img/{{list.0.img}}.png"/></div>
+  <div class="item_desc">{{ list.0.description }}</div>
   <div>
+    {% if list.0.q > 0 %}
     <form action="{{ url('products') }}{{ list.0.name_en }}/{{ list.0.id }}" method="post">
-      <input type="submit" name="tocart" value="В корзину">
+      <button type="submit" name="tocart" value="В корзину" class="button_cart"></button>
     </form>
+    <p>На складе: {{ list.0.q }} {{ list.0.units }}</p>
+    {% else %}
+      <p style="background: lightgrey">нет в наличии</p>
+    {% endif %}
   </div>
 {% else %}
   <span>Мы такое не продаем</span><br />

@@ -1,36 +1,29 @@
-<h1>Корзина</h1>
-<!-- {% if list %}
-  {% for i in list %}
-  <p>{{ i.name }} - {{ rows_q[i.id] }} {{ i.units }}</p>
-  {% endfor %}
-{% else %}
-  <p>Корзина пуста</p>
-{% endif %} -->
+<div class="sort_submit">
+  <h1>Корзина</h1>
+</div>
 
+
+<div class="content">
 {% if list %} {% set sum=0 %}
   <form action="" method="post">
     {% for i in list %}
-    {{ i.name }} -
+    <a href="{{ url('products') }}{{ i.name_en }}/{{ i.id }}">{{ i.name }}</a> -
     <input type="number" name="{{ i.id }}" size="1" min="1" max="{{ i.q }}" value="{{ rows_q[i.id] }}">
-    <input type="submit" name="q_ed" value=">">
-    <input type="submit" name="del" value="{{ i.id }}">
+    <button type="submit" name="q_ed" value=">">></button>
+    <button type="submit" name="del" value="{{ i.id }}">X</button>
 
     {{ i.units }}  = {{ i.price*(1-i.sale/100)*rows_q[i.id] }} $ {% set sum=sum+i.price*(1-i.sale/100)*rows_q[i.id] %}
     <br />
     {% endfor %}
-    Итого: {{ sum }} $<br />
+    <p>Итого: {{ sum }} $</p>
     <input type="submit" name="order" value="Оформить заказ">
-
   </form>
-  <!-- <form action="" method="post">
-  </form> -->
   <form action="" method="post">
     <input type="submit" name="clearcart" value="Очистить корзину">
   </form>
 {% else %}
-  <p>Корзина пуста</p>
+  <p class="message">Корзина пуста</p>
 {% endif %}
 
-<!-- <form action="" method="post">
-  <input type="submit" name="clearcart" value="Очистить корзину">
-</form> -->
+
+</div>

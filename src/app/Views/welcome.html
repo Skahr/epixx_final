@@ -1,20 +1,30 @@
-<h1>welcome</h1>
-<p>
-  raz-raz
-</p>
 <h2>Топ продаж</h2>
-<ul>
+<ul class="thumbs">
+
   {% for i in top_list %}
-    <li>
-      {{ i.name }}
-    </li>
+    
+      <li><a href="{{ url('products') }}{{ i.name_en }}/{{ i.id }}"><img src="{{ url('homepage') }}img/{{ i.img }}.png"/></a>
+        <span>
+          {% if i.sale %}
+            <b>-{{ i.sale }}% </b>
+          {% endif %}
+          {{ i.price*(1-i.sale/100) }} $
+        </span></li>
+   
   {% endfor %}
+
 </ul>
 <h2>Распродажа!</h2>
-<ul>
+<ul class="thumbs">
   {% for i in sale_list %}
     <li>
-      {{ i.name }}
+      <a href="{{ url('products') }}{{ i.name_en }}/{{ i.id }}"><img src="{{ url('homepage') }}img/{{ i.img }}.png"/></a>
+        <span>
+          {% if i.sale %}
+            <b>-{{ i.sale }}% </b>
+          {% endif %}
+          {{ i.price*(1-i.sale/100) }} $
+        </span>
     </li>
   {% endfor %}
 </ul>

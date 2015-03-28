@@ -1,31 +1,108 @@
-body { background: grey;}
-button {background: black url(img/cart.png) no-repeat; width: 50px; height: 50px; border: 0px; }
-button:focus {background: black; outline: 0;}
-.sale {color: red;}
-.list_img {  width: 400px;}
-.center {
-    width: 800px; /* Ширина элемента в пикселах */
-    padding: 10px; /* Поля вокруг текста */
-    margin: auto; /* Выравниваем по центру */
-    background: white; /* Цвет фона */
+body { background: grey; background-image: url(img/Limbo.png), url(img/Mesa.png);
+    background-position: top left, top right;
+    background-repeat: no-repeat, no-repeat; text-align: center;}
+table.order {width: 100%; padding: 20px; }
+th {background: grey}
+.tdleft td {text-align: left}
+.button {
+  border: 0px;
+  border-top: 1px solid #8f8f8f;
+  background: #000000;
+  padding: 2px 4px;
+  font-size: 14px;
+   color: white;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.button:hover {
+   border-top-color: #8f8f8f;
+   background: #aaaaaa;
+   color: #ccc;
+   }
+.button:focus {
+   outline: 0px;
+   }
 
-   }
+nav { background: black;}
+nav a { color: white; display: block; text-decoration: none}
+nav span {color: red; font-size: 30px; position: relative; z-index: 5; display: block;}
+#nav_menu, #nav_menu ul, #nav_menu li { margin: 0px; padding: 0px; background: black; font-size: 16px; }
+#nav_menu { position: relative;
+  display: table;
+  margin: auto;
+  width: 800px;}
+#nav_menu ul { position: absolute; right: 0px; left: 0px; z-index: 5;
+  display: none;}
+#nav_menu li:hover ul { display: block;}
+#nav_menu li {display: table-cell;}
+#nav_menu ul li {display: table-cell;}
+#nav_menu a {
+  display: block;
+  padding: 3px 0;
+  color: #fff;
+  text-decoration: none;
+}
+#nav_menu ul a {
+  padding: 3px 15px;
+}
+#nav_menu li:hover {
+  background: white;
+}
+#nav_menu li:hover a {color: grey;}
+.thumbs {position: relative; display: table; margin: auto; padding: 0px;  }
+.thumbs li {display: table-cell; }
+.thumbs a {display: block; height: 100%}
+.thumbs img {width: 250px; vertical-align:middle; }
+.thumbs span {position: absolute; top: 0px; color: red; font-size: 20px; display: block;}
+.button_cart {background: url(img/cart.png) no-repeat; width: 50px; height: 50px; border: 0px; }
+.button_cart:hover {position: relative; top: 2px;}
+.button_cart:focus {outline: 0; opacity: 0.5;}
+.price_cart {position: absolute; bottom: 0px; right: 10px }
+.sale {color: red;}
+.list_img {  width: 400px; }
+.text_center { text-align: center;}
+.center {
+    width: 800px;
+    padding: 0px;
+    margin: auto;
+ }
+div.center {background: white;}
 .table_left {
-    overflow: hidden;
-    text-align: right;
-    background-color: black; /* Цвет фона слоя */
-    color: white;
-    padding: 5px; /* Поля вокруг текста */
-    float: left; /* Обтекание по правому краю */
-    width: 400px; /* Ширина слоя */
-   }
+  overflow: hidden; 
+  background-color: white;
+  color: black;
+  padding: 4px; 
+  float: left; 
+  width: 400px; height: 240px;
+}
+.table_left a {display: block; height: 100%; }
 .table_right {
-    background-color: #c0c0c0; /* Цвет фона слоя */
-    padding: 5px; /* Поля вокруг текста */
-    width: 380px; /* Ширина слоя */
-    float: left; /* Обтекание по правому краю */
-   }
+  background-color: white; position: relative;
+  padding: 4px; 
+  width: 380px; height: 240px;
+  float: left; 
+}
+.link_route {background: grey; }
+.link_route a {display: block; text-decoration: none; color: white}
+.link_route td {outline: solid white 2px; }
+.link_route td:hover {background: white;}
+.link_route td:hover a {color: grey}
+.item_desc {background: #e3e3e3; padding: 20px; margin: 20px; text-align: justify;}
 .clear {
     clear: left; /* Отмена обтекания */
     padding: 10px;
    }
+.sort_submit {padding: 12px; background: black; color: white; border: 0px;}
+.sort_submit button { margin: 4px; width: 26px; height: 26px; border: solid black 1px;}
+.sort_submit button:hover {position: relative; top: 2px}
+.sort_submit button:focus {outline: 0;}
+#arrow_up {background: white url(img/arrow_up_24x24.png)}
+#arrow_down {background: white url(img/arrow_down_24x24.png)}
+#x_cancel {background: white url(img/x_21x21.png); width: 23px; height: 23px;}
+.error {background: red; padding: 20px; position: relative; top: 100px}
+.message {background: grey; padding: 20px; position: relative; top: 100px}
+footer a, .mini_cart a {text-decoration: none; color: #333333}
+.content {padding: 20px; line-height: 1.5}
+.mini_cart {position: fixed; right: 10px; top: 10px; width: 200px; padding: 10px; background: #c7c7c7; opacity: 0.8; border: 1px solid #333;}
+.mini_cart a {display: block}
+.content a {text-decoration: none; color: cadetblue}

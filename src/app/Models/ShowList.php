@@ -7,6 +7,12 @@ class ShowList {
     $row=$st->fetchAll();
     return $row;
   }
+  public function getPageCat($pdo, $cat) {
+    $st=$pdo->prepare("SELECT name_ru FROM category WHERE name_en=?");
+    $st->execute(array($cat));
+    $row=$st->fetchAll();
+    return $row;
+  }
   public function getFullList($pdo, $cat, $sort) {
     $st="SELECT * FROM pricelist JOIN category ON pricelist.id_cat=category.id_cat";
     if(!empty($cat)) {
@@ -31,12 +37,6 @@ class ShowList {
     $row=$st->fetchAll();
     return $row;
   }
-//  public function getByCategory($pdo, $cat) {
-//    $st=$pdo->prepare("SELECT * FROM pricelist JOIN category ON pricelist.id_cat=category.id_cat WHERE category.name_en= ?");
-//    $st->execute(array($cat));
-//    $row=$st->fetchAll();
-//    return $row;
-//  }
   public function getTopList($pdo) {
     $st=$pdo->prepare("SELECT * FROM pricelist JOIN category ON pricelist.id_cat=category.id_cat ORDER BY soldq DESC LIMIT 3");
     $st->execute();
@@ -44,7 +44,7 @@ class ShowList {
     return $row;
   }
   public function getSaleList($pdo) {
-    $st=$pdo->prepare("SELECT * FROM pricelist JOIN category ON pricelist.id_cat=category.id_cat WHERE sale > 0");
+    $st=$pdo->prepare("SELECT * FROM pricelist JOIN category ON pricelist.id_cat=category.id_cat WHERE sale > 0 ORDER BY RAND() LIMIT 3");
     $st->execute();
     $row=$st->fetchAll();
     return $row;
@@ -57,14 +57,13 @@ class ShowList {
   }
   public function getCartList($pdo, $id) {
     $sql="SELECT * FROM pricelist JOIN category ON pricelist.id_cat=category.id_cat WHERE id IN (".$id.")";
-    //echo $sql;
-    $st=$pdo->prepare($sql);//"SELECT * FROM pricelist WHERE id IN ( ? )");
-    $st->execute();//array($id));
+    $st=$pdo->prepare($sql);
+    $st->execute();
     $row=$st->fetchAll();
     return $row;
   }
   public function postItemToDb($pdo, $name, $cat, $description, $img, $price, $sale, $units, $q){
-    $st=$pdo->prepare("INSERT INTO pricelist (name, category, description, img, price, sale, units, q) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $st=$pdo->prepare("INSERT INTO pricelist (name, id_cat, description, img, price, sale, units, q) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
     $st->execute(array($name, $cat, $description, $img, $price, $sale, $units, $q));
   }
   public function postItemToDbUpdate($pdo, $id, $name, $cat, $description, $img, $price, $sale, $units, $q, $soldq) {
@@ -83,12 +82,8 @@ class ShowList {
   }
   public function updateSoldq($pdo, $c_o) {
     foreach ($c_o as $k => $v) {
-      $st=$pdo->prepare("UPDATE pricelist SET soldq=soldq+? WHERE id=?");
-      $st->execute(array($v, $k));
+      $st=$pdo->prepare("UPDATE pricelist SET soldq=soldq+?, q=q-? WHERE id=?");
+      $st->execute(array($v, $v, $k));
     }
   }
-  // public function hello($name) {
-  //     return ", {$name}!";
-  // }
-
 }

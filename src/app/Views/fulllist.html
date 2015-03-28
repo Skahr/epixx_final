@@ -1,19 +1,37 @@
-<h1>Каталог товаров</h1>
-<form action="" method="post"><input type="submit" name="sort" value="price_asc"></form>
-<form action="" method="post"><input type="submit" name="sort" value="price_desc"></form>
-<form action="" method="post"><input type="submit" name="sort" value="soldq_asc"></form>
-<form action="" method="post"><input type="submit" name="sort" value="soldq_desc"></form>
-<form action="" method="post"><input type="submit" name="sort" value="clear"></form>
-  {% for i in list %}
-    <div class="table_left"
-    {% if i.sale %}
-      style="outline: 4px solid red; outline-offset: -4px"
-    {% endif %}>
-      <div>
-              <img src="{{ url('homepage') }}img/{{ i.img }}.png" class="list_img"/>
-      </div>
-      <div>
 
+{% if list %}
+<div class="sort_submit">
+  {% if cat %}
+    <h1>{{ cat.0.name_ru }}</h1>
+  {% else %}
+    <h1>Все категории</h1>
+  {% endif %}
+  <form action="" method="post">
+    &#36;
+    <button type="submit" name="sort" value="price_asc" id="arrow_up"></button>
+    <button type="submit" name="sort" value="price_desc" id="arrow_down"></button>
+    <button type="submit" name="sort" value="clear" id="x_cancel"></button>
+    <button type="submit" name="sort" value="soldq_asc" id="arrow_up"></button>
+    <button type="submit" name="sort" value="soldq_desc" id="arrow_down"></button>
+    &#9829;
+  </form>
+</div>
+
+  {% for i in list %}
+  <div style="border: solid black 1px;">
+    <div class="table_left">
+      
+              <a href="{{ url('products') }}{{ i.name_en }}/{{ i.id }}"><img src="{{ url('homepage') }}img/{{ i.img }}.png" class="list_img"/></a>
+      
+
+    </div>
+    <div class="table_right">
+      <table width=100% class="link_route"><tr>
+      <td width=40%><a href="{{ url('products') }}{{ i.name_en }}">{{ i.name_ru }}</a></td>
+      <td><a href="{{ url('products') }}{{ i.name_en }}/{{ i.id }}">{{ i.name }}</a></td></tr></table>
+      <div style="text-align: justify; padding: 10px">{{ i.description }}</div>
+      <div class="price_cart">
+        {% if i.q > 0 %}
         <form action="" method="post">
           {% if i.sale %}
             <b class="sale">Скидка {{ i.sale }}%!!!  </b>
@@ -21,15 +39,21 @@
           {% endif %}
           {{ i.price*(1-i.sale/100) }} $
           <input type="hidden" name="id" value="{{ i.id }}">
-          <button type="submit" name="tocart"></button>
-          <!-- <input type="submit" name="tocart" value="В корзину"> -->
+          <button type="submit" name="tocart" class="button_cart"></button>
         </form>
+        {% else %}
+          <p style="background: lightgrey">нет в наличии</p>
+        {% endif %}
       </div>
     </div>
-    <div class="table_right">
-      <a href="{{ url('products') }}{{ i.name_en }}">{{ i.name_ru }}</a> /
-      <a href="{{ url('products') }}{{ i.name_en }}/{{ i.id }}">{{ i.name }}</a>
-      <div>{{ i.description }}</div>
-    </div>
+      
     <div class="clear"></div>
+  </div>
   {% endfor %}
+{% else %}
+  {% if cat %}
+    <div class="message">В категори <em>{{ cat.0.name_ru }}</em> товары временно отсутствуют</div>
+  {% else %}
+    <div class="error">Что-то явно пошло не по плану...</div>
+  {% endif %}
+{% endif %}

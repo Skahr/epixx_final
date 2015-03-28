@@ -15,7 +15,7 @@
       {% for i in order_list %}
         {{ i.name }} -
         <input type="text" name="{{ i.id }}" value="{{ c_o[i.id] }}" required>
-        <input type="submit" name="del" value="{{ i.id }}"><br />
+        <input type="submit" name="del" value="{{ i.id }}"> на складе: {{ i.q }}<br />
       {% endfor %}
     {% else %}
       Нет заказов

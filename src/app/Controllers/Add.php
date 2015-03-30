@@ -1,8 +1,9 @@
 <?php
+//Добавление нового товара в базу
 if(isset($_POST['addtodb'])){
   $name=trim($_POST['name']);
   $Pg= new Models\ShowList();
-  $list=$Pg->checkName($app['pdo'], $name);
+  $list=$Pg->checkName($app['pdo'], $name); //проверка уникальности названия
   if (!$list) {
     $target_dir = "../web/img/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);

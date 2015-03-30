@@ -6,8 +6,8 @@
   <tr><th align="left">Наименование</th><th>Кол-во</th><th>Цена</th></tr>
   {% set sum=0 %}
   {% for i in list %}
-  <tr><td align="left">{{ i.name }}</td><td>{{ rows_q[i.id] }}{{ i.units }}</td><td>{{ i.price*(1-i.sale/100)*rows_q[i.id] }}</td></tr>
-  {% set sum=sum+i.price*(1-i.sale/100)*rows_q[i.id] %}
+    <tr><td align="left">{{ i.name }}</td><td>{{ rows_q[i.id] }}{{ i.units }}</td><td>{{ i.price*(1-i.sale/100)*rows_q[i.id] }}</td></tr>
+    {% set sum=sum+i.price*(1-i.sale/100)*rows_q[i.id] %}
   {% endfor %}
   <tr colspan=3 align="left"><td><b>Итого: {{ sum }} $</b></td></tr>
 </table>

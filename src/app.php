@@ -60,8 +60,6 @@ $app->get('/user/{id}', function($id) use ($app){
 $app->post('/user/{id}', function($id) use ($app){
   if (isset($_POST['shortlist'])){
     $_SESSION['shortlist']='1';
-//    require_once '/app/Controllers/ShortList.php';
-//    return $viewgen;
   }
   else {
     require_once '/app/Controllers/AdmOrderId.php';

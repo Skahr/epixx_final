@@ -20,10 +20,7 @@
   {% for i in list %}
   <div style="border: solid black 1px;">
     <div class="table_left">
-      
-              <a href="{{ url('products') }}{{ i.name_en }}/{{ i.id }}"><img src="{{ url('homepage') }}img/{{ i.img }}.png" class="list_img"/></a>
-      
-
+      <a href="{{ url('products') }}{{ i.name_en }}/{{ i.id }}"><img src="{{ url('homepage') }}img/{{ i.img }}.png" class="list_img"/></a>
     </div>
     <div class="table_right">
       <table width=100% class="link_route"><tr>
@@ -32,15 +29,15 @@
       <div style="text-align: justify; padding: 10px">{{ i.description }}</div>
       <div class="price_cart">
         {% if i.q > 0 %}
-        <form action="" method="post">
-          {% if i.sale %}
-            <b class="sale">Скидка {{ i.sale }}%!!!  </b>
-            <strike>{{ i.price }}</strike>
-          {% endif %}
-          {{ i.price*(1-i.sale/100) }} $
-          <input type="hidden" name="id" value="{{ i.id }}">
-          <button type="submit" name="tocart" class="button_cart"></button>
-        </form>
+          <form action="" method="post">
+            {% if i.sale %}
+              <b class="sale">Скидка {{ i.sale }}%!!!  </b>
+              <strike>{{ i.price }}</strike>
+            {% endif %}
+            {{ i.price*(1-i.sale/100) }} $
+            <input type="hidden" name="id" value="{{ i.id }}">
+            <button type="submit" name="tocart" class="button_cart"></button>
+          </form>
         {% else %}
           <p style="background: lightgrey">нет в наличии</p>
         {% endif %}

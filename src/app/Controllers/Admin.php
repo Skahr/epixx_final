@@ -1,9 +1,10 @@
 <?php
-if (isset($_POST['logout'])) {
+//админка
+if (isset($_POST['logout'])) { //логаут
   unset($_SESSION['login']);
   unset($_SESSION['ed_mode']);
 }
-elseif (isset($_POST['changepass'])) {
+elseif (isset($_POST['changepass'])) { //смена пароля
   if($_POST['password_new_1']==$_POST['password_new_2']){
     $Pg= new Models\UserList();
     $rows=$Pg->checkPassword($app['pdo'], $_SESSION['login']);
@@ -24,7 +25,7 @@ elseif (isset($_POST['changepass'])) {
     setflash('Новые пароли не совпадают');
   }
 }
-elseif (isset($_POST['ed_mode'])) {
+elseif (isset($_POST['ed_mode'])) { //режим редактирования товаров
   if(isset($_SESSION['ed_mode'])) {
     unset($_SESSION['ed_mode']);
   }

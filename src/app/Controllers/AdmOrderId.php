@@ -38,13 +38,6 @@ elseif (isset($_POST['add'])) {
   else {
     $c_o='{"'.$_POST['add'].'":1}';
   }
-//  $c_o=rtrim($list['0']['c_order'], '}');
-//  if($c_o) {
-//    $c_o.=',"'.$_POST['add'].'":"1"}';
-//  }
-//  else {
-//    $c_o.='{"'.$_POST['add'].'":"1"}';
-//  }
   $Pg->postOrderField($app['pdo'], $id, $c_o);
 }
 else {

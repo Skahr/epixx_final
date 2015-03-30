@@ -10,10 +10,10 @@ th {background: grey}
   background: #000000;
   padding: 2px 4px;
   font-size: 14px;
-   color: white;
-   text-decoration: none;
-   vertical-align: middle;
-   }
+  color: white;
+  text-decoration: none;
+  vertical-align: middle;
+}
 .button:hover {
    border-top-color: #8f8f8f;
    background: #aaaaaa;

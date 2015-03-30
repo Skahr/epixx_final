@@ -18,7 +18,6 @@ class Products implements ControllerProviderInterface {
       };
       $factory= $app['controllers_factory'];
       $factory->get('/', 'Controllers\Products::getFullList')->bind('products');
-//      $factory->get('/category', 'Controllers\Products::getByCategory');
       $factory->get('/{cat}', 'Controllers\Products::getByCategory');
       $factory->get('/{cat}/{id}', 'Controllers\Products::getItemPage')->convert('id', $checkInt);
       $factory->post('/{cat}/{id}', 'Controllers\Products::postToCart')->convert('id', $checkInt);

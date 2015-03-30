@@ -11,7 +11,7 @@
 <form action="{{ url('products') }}{{ list.0.name_en }}/{{ list.0.id }}" method="post">
   <table class="tdleft" width="100%">
     <tr><td>Название:</td><td colspan="2"><input type="text" name="name" value="{{ list.0.name }}" required></td></tr>
-    <tr><td>Категория:</td><td><input type="text" name="category" value="{{ list.0.id_cat }}" required></td><td>//{{ list.0.name_ru }}</td></tr>
+    <tr><td>Категория:</td><td><input type="number" name="category" value="{{ list.0.id_cat }}" required></td><td>//{{ list.0.name_ru }}</td></tr>
     <tr><td>Описание:</td><td colspan="2"><textarea name="description" rows="4" cols="50" required>{{ list.0.description }}</textarea></td></tr>
     <tr><td>Картинка:</td><td colspan="2"><input type="text" name="img" value="{{ list.0.img }}" required>.png</td></tr>
     <tr><td>Цена:</td><td colspan="2"><input type="text" name="price" value="{{ list.0.price }}" required></td></tr>

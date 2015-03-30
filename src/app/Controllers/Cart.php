@@ -1,7 +1,7 @@
 <?php
 
 
-if (isset($_POST['order'])) { //
+if (isset($_POST['order'])) {
   $_SESSION['order']='1';
   foreach ($_POST as $k => $v) {
     if($k!='order') {
